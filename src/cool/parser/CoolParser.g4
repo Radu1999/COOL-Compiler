@@ -53,6 +53,7 @@ expr:   name=ID LPAREN (params += expr (COMMA params += expr)*)? RPAREN #implDis
     |   NEW TYPE                                                    # new
     |   CASE var=expr OF (options+=case_option)+ ESAC               # case
     |   LET members+=variable_def (COMMA members+=variable_def)* IN body=expr # let
+    |   LBRACE (body += expr SEMI)* RBRACE # block
 
     ;
 

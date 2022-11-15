@@ -49,4 +49,6 @@ public interface ASTVisitor<T> {
     T visit(CaseOption caseOption);
 
     T visit(Case casee);
+
+    T visit(Block block);
 }

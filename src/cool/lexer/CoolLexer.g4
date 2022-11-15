@@ -105,7 +105,7 @@ NEG: '~';
 
 LET : 'let';
 
-TYPE : UPPER_LETTER (ID)*;
+TYPE : UPPER_LETTER (DIGIT | ID)*;
 ID : (LETTER | '_')(LETTER | '_' | DIGIT)*;
 
 

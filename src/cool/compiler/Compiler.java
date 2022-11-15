@@ -254,7 +254,7 @@ public class Compiler {
 
             @Override
             public ASTNode visitVariable_def(CoolParser.Variable_defContext ctx) {
-                return new VariableDef(ctx.name, ctx.type, (Expression) visit(ctx.expr()));
+                return new VariableDef(ctx.name, ctx.type, ctx.expr() != null? (Expression) visit(ctx.expr()) : null);
             }
 
             @Override
@@ -267,6 +267,11 @@ public class Compiler {
                 return new Case((Expression) visit(ctx.var),
                                ctx.options.stream().map(option -> (CaseOption) visit(option)).collect(Collectors.toList()),
                                ctx.start);
+            }
+
+            @Override
+            public ASTNode visitBlock(CoolParser.BlockContext ctx) {
+                return new Block(ctx.body.stream().map(expr -> (Expression) visit(expr)).collect(Collectors.toList()), ctx.start);
             }
         };
 
@@ -536,6 +541,18 @@ public class Compiler {
                 for(CaseOption caseOption : casee.options) {
                     caseOption.accept(this);
                 }
+                indent--;
+                return null;
+            }
+
+            @Override
+            public Void visit(Block block) {
+                printIndent("block");
+                indent++;
+                if(block.body != null)
+                    for(Expression expr : block.body) {
+                        expr.accept(this);
+                    }
                 indent--;
                 return null;
             }

@@ -69,7 +69,7 @@ class Main inherits IO {
     fact_iter(n : Int) : Int {
         let res : Int <- 1
         -- Blocurile {} sunt văzute ca expresii. Valoarea ultimei expresii
-        -- din bloc este valoarea blocului. 
+        -- din bloc este valoarea blocului.
         in
             {
                 while (not (n = 0)) loop

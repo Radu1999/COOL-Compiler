@@ -412,3 +412,16 @@ class Case extends Expression {
     }
 }
 
+class Block extends Expression {
+    List<Expression> body;
+
+    Block(List<Expression> body, Token token) {
+        super(token);
+        this.body = body;
+    }
+
+    @Override
+    public <T> T accept(ASTVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
+}

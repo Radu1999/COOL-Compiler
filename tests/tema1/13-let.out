@@ -1,0 +1,5 @@
+"13-let.cl", line 3:13, Syntax error: mismatched input 'x' expecting {'}', '+', '-', '*', '/', '=', '<', '<='}
+"13-let.cl", line 3:29, Syntax error: mismatched input ',' expecting {';', '+', '-', '*', '/', '=', '<', '<='}
+"13-let.cl", line 5:9, Syntax error: missing ';' at 'in'
+"13-let.cl", line 8:1, Syntax error: extraneous input '}' expecting {<EOF>, 'class'}
+Compilation halted

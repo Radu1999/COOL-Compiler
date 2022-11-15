@@ -1,0 +1,21 @@
+program
+  class
+    A
+    method
+      f
+      formal
+        x
+        Int
+      Int
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "cool.compiler.Expression.accept(cool.compiler.ASTVisitor)" because "method.body" is null
+	at cool.compiler.Compiler$3.visit(Compiler.java:314)
+	at cool.compiler.Compiler$3.visit(Compiler.java:212)
+	at cool.compiler.Method.accept(ASTNode.java:134)
+	at cool.compiler.Compiler$3.visit(Compiler.java:245)
+	at cool.compiler.Compiler$3.visit(Compiler.java:212)
+	at cool.compiler.ClassDefinition.accept(ASTNode.java:43)
+	at cool.compiler.Compiler$3.visit(Compiler.java:229)
+	at cool.compiler.Compiler$3.visit(Compiler.java:212)
+	at cool.compiler.Program.accept(ASTNode.java:55)
+	at cool.compiler.Compiler.main(Compiler.java:375)
+	at cool.tester.Tester1.main(Tester1.java:33)

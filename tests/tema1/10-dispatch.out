@@ -1,0 +1,6 @@
+"10-dispatch.cl", line 7:13, Lexical error: Invalid character: .
+"10-dispatch.cl", line 7:18, Syntax error: mismatched input '+' expecting ':'
+"10-dispatch.cl", line 7:25, Syntax error: mismatched input '+' expecting ':'
+"10-dispatch.cl", line 8:5, Syntax error: mismatched input '}' expecting ':'
+"10-dispatch.cl", line 10:5, Syntax error: extraneous input 'h' expecting {<EOF>, 'class'}
+Compilation halted

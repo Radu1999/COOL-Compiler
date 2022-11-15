@@ -1,0 +1,8 @@
+program
+  class
+    A
+    method
+      f
+      formal
+        x
+        Object

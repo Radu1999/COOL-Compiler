@@ -1,3 +1,10 @@
-"09-new-isvoid.cl", line 3:20, Syntax error: mismatched input 'new' expecting {'}', '+', '-', '*', '/', '=', '<', '<='}
-"09-new-isvoid.cl", line 5:1, Syntax error: extraneous input '}' expecting {<EOF>, 'class'}
-Compilation halted
+program
+  class
+    A
+    method
+      f
+      Bool
+      not
+        isvoid
+          new
+            A

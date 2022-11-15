@@ -34,4 +34,19 @@ public interface ASTVisitor<T> {
     T visit(Paren paren);
 
     T visit(Not not);
+
+    T visit(New neww);
+
+    T visit(IsVoid isVoid);
+
+    T visit(ImplicitDispatch implicitDispatch);
+
+    T visit(ExplicitDispatch explicitDispatch);
+
+    T visit(VariableDef variableDef);
+    T visit(Let let);
+
+    T visit(CaseOption caseOption);
+
+    T visit(Case casee);
 }

@@ -1,4 +1,4 @@
-// Generated from E:/CPL/Tema1/src/cool/parser\CoolParser.g4 by ANTLR 4.10.1
+// Generated from E:/CPL/COOL Compiler/src/cool/parser\CoolParser.g4 by ANTLR 4.10.1
 
     package cool.parser;
 
@@ -174,6 +174,18 @@ public interface CoolParserListener extends ParseTreeListener {
 	 */
 	void exitExpr_brace(CoolParser.Expr_braceContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code implDispatch}
+	 * labeled alternative in {@link CoolParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterImplDispatch(CoolParser.ImplDispatchContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code implDispatch}
+	 * labeled alternative in {@link CoolParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitImplDispatch(CoolParser.ImplDispatchContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code method_call}
 	 * labeled alternative in {@link CoolParser#expr}.
 	 * @param ctx the parse tree
@@ -257,6 +269,18 @@ public interface CoolParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMultDiv(CoolParser.MultDivContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code explDispatch}
+	 * labeled alternative in {@link CoolParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterExplDispatch(CoolParser.ExplDispatchContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code explDispatch}
+	 * labeled alternative in {@link CoolParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitExplDispatch(CoolParser.ExplDispatchContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code let}
 	 * labeled alternative in {@link CoolParser#expr}.

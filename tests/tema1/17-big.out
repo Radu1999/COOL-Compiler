@@ -1,35 +1,26 @@
-"17-big.cl", line 13:22, Syntax error: mismatched input ';' expecting {'}', '+', '-', '*', '/', '=', '<', '<='}
+"17-big.cl", line 13:22, Syntax error: mismatched input ';' expecting {'}', '.', '@', '+', '-', '*', '/', '=', '<', '<='}
+"17-big.cl", line 14:22, Syntax error: extraneous input ';' expecting {'if', 'case', 'while', BOOL, '(', '{', '}', '-', 'isvoid', 'not', 'new', '~', 'let', ID, INT, STRING}
+"17-big.cl", line 15:17, Syntax error: extraneous input ';' expecting {'if', 'case', 'while', BOOL, '(', '{', '}', '-', 'isvoid', 'not', 'new', '~', 'let', ID, INT, STRING}
 "17-big.cl", line 17:5, Syntax error: extraneous input '}' expecting ';'
-"17-big.cl", line 19:5, Syntax error: extraneous input 'print' expecting {<EOF>, 'class'}
-"17-big.cl", line 40:17, Syntax error: mismatched input 'x' expecting {'}', '+', '-', '*', '/', '=', '<', '<='}
-"17-big.cl", line 40:29, Syntax error: mismatched input ',' expecting {';', '+', '-', '*', '/', '=', '<', '<='}
-"17-big.cl", line 41:34, Syntax error: mismatched input ',' expecting {';', '+', '-', '*', '/', '=', '<', '<='}
-"17-big.cl", line 42:33, Syntax error: mismatched input ',' expecting {';', '+', '-', '*', '/', '=', '<', '<='}
-"17-big.cl", line 43:29, Syntax error: mismatched input ',' expecting {';', '<-'}
-"17-big.cl", line 45:25, Syntax error: mismatched input 'List' expecting {';', '+', '-', '*', '/', '=', '<', '<='}
-"17-big.cl", line 45:36, Syntax error: mismatched input ',' expecting ':'
-"17-big.cl", line 46:29, Syntax error: missing ':' at 'List'
-"17-big.cl", line 46:33, Lexical error: Invalid character: .
-"17-big.cl", line 46:40, Syntax error: mismatched input ',' expecting ':'
-"17-big.cl", line 47:33, Syntax error: missing ':' at 'List'
-"17-big.cl", line 47:37, Lexical error: Invalid character: .
-"17-big.cl", line 47:44, Syntax error: mismatched input ',' expecting ':'
-"17-big.cl", line 47:51, Syntax error: mismatched input ')' expecting ':'
-"17-big.cl", line 47:52, Syntax error: mismatched input ')' expecting ':'
-"17-big.cl", line 49:29, Syntax error: mismatched input ';' expecting ':'
-"17-big.cl", line 52:69, Lexical error: Invalid character: .
-"17-big.cl", line 53:13, Syntax error: mismatched input 'in' expecting ':'
-"17-big.cl", line 55:32, Syntax error: extraneous input 'Factorial recursiv: ' expecting {ID, ')'}
-"17-big.cl", line 55:55, Lexical error: Invalid character: .
-"17-big.cl", line 55:72, Syntax error: mismatched input '(' expecting ':'
-"17-big.cl", line 55:75, Syntax error: mismatched input ')' expecting ':'
-"17-big.cl", line 56:37, Syntax error: extraneous input 'n' expecting {ID, ')'}
-"17-big.cl", line 56:42, Syntax error: mismatched input ';' expecting ':'
-"17-big.cl", line 57:32, Syntax error: extraneous input 'Factorial iterativ: ' expecting {ID, ')'}
-"17-big.cl", line 57:55, Lexical error: Invalid character: .
-"17-big.cl", line 57:73, Syntax error: mismatched input '(' expecting ':'
-"17-big.cl", line 57:76, Syntax error: mismatched input ')' expecting ':'
-"17-big.cl", line 58:37, Syntax error: extraneous input 'n' expecting {ID, ')'}
-"17-big.cl", line 58:42, Syntax error: mismatched input ';' expecting ':'
-"17-big.cl", line 60:9, Syntax error: extraneous input '}' expecting {<EOF>, 'class'}
+"17-big.cl", line 26:36, Syntax error: mismatched input 'A2I' expecting TYPE
+"17-big.cl", line 26:39, Syntax error: mismatched input '.' expecting ':'
+"17-big.cl", line 26:43, Syntax error: mismatched input '(' expecting ':'
+"17-big.cl", line 26:46, Syntax error: extraneous input ';' expecting {'if', 'case', 'while', BOOL, '(', '{', '}', '-', 'isvoid', 'not', 'new', '~', 'let', ID, INT, STRING}
+"17-big.cl", line 27:23, Syntax error: extraneous input ':' expecting {'if', 'case', 'while', BOOL, '(', '{', '}', '-', 'isvoid', 'not', 'new', '~', 'let', ID, INT, STRING}
+"17-big.cl", line 27:44, Syntax error: mismatched input ';' expecting {'}', '.', '@', '+', '-', '*', '/', '=', '<', '<='}
+"17-big.cl", line 27:48, Syntax error: extraneous input ';' expecting {'if', 'case', 'while', BOOL, '(', '{', '}', '-', 'isvoid', 'not', 'new', '~', 'let', ID, INT, STRING}
+"17-big.cl", line 28:17, Syntax error: extraneous input 'esac' expecting {'}', ID}
+"17-big.cl", line 31:31, Syntax error: mismatched input '.' expecting ':'
+"17-big.cl", line 31:39, Syntax error: extraneous input ' ' expecting {')', ID}
+"17-big.cl", line 31:43, Syntax error: mismatched input ')' expecting ':'
+"17-big.cl", line 32:50, Syntax error: extraneous input 'n' expecting {')', ID}
+"17-big.cl", line 32:56, Syntax error: mismatched input 'else' expecting ':'
+"17-big.cl", line 32:74, Syntax error: mismatched input 'fi' expecting ':'
+"17-big.cl", line 34:5, Syntax error: extraneous input '}' expecting ';'
+"17-big.cl", line 35:1, Syntax error: extraneous input '}' expecting {<EOF>, 'class'}
+"17-big.cl", line 49:29, Syntax error: mismatched input ';' expecting {'}', '.', '@', '+', '-', '*', '/', '=', '<', '<='}
+"17-big.cl", line 56:42, Syntax error: mismatched input ';' expecting {'}', '.', '@', '+', '-', '*', '/', '=', '<', '<='}
+"17-big.cl", line 58:42, Syntax error: extraneous input ';' expecting {'if', 'case', 'while', BOOL, '(', '{', '}', '-', 'isvoid', 'not', 'new', '~', 'let', ID, INT, STRING}
+"17-big.cl", line 61:5, Syntax error: extraneous input '}' expecting ';'
+"17-big.cl", line 64:5, Syntax error: extraneous input 'fact_rec' expecting {<EOF>, 'class'}
 Compilation halted

@@ -48,7 +48,7 @@ public class Compiler {
                 
 
             // Test lexer only.
-            tokenStream.fill();
+//            tokenStream.fill();
 //            List<Token> tokens = tokenStream.getTokens();
 //            tokens.stream().forEach(token -> {
 //                var text = token.getText();
@@ -161,7 +161,7 @@ public class Compiler {
 
             @Override
             public ASTNode visitMethod_def(CoolParser.Method_defContext ctx) {
-                return new Method(ctx.name, ctx.return_, (Expression) visit(ctx.body),
+                return new Method(ctx.name, ctx.return_, ctx.body.stream().map(expr -> (Expression) visit(expr)).collect(Collectors.toList()),
                     ctx.params.stream().map(param -> (Formal) visit(param)).collect(Collectors.toList()));
             }
 
@@ -206,6 +206,68 @@ public class Compiler {
             public ASTNode visitNot(CoolParser.NotContext ctx) {
                 return new Not((Expression) visit(ctx.expr()), ctx.start);
             }
+
+            @Override
+            public ASTNode visitAssign(CoolParser.AssignContext ctx) {
+                return new Assign(ctx.name, (Expression) visit(ctx.expr()), ctx.start);
+            }
+
+            @Override
+            public ASTNode visitIsvoid(CoolParser.IsvoidContext ctx) {
+                return new IsVoid((Expression) visit(ctx.expr()), ctx.start);
+            }
+
+            @Override
+            public ASTNode visitNew(CoolParser.NewContext ctx) {
+                return new New(ctx.TYPE().getSymbol());
+            }
+
+            @Override
+            public ASTNode visitImplDispatch(CoolParser.ImplDispatchContext ctx) {
+                return new ImplicitDispatch(ctx.name, ctx.params
+                                                        .stream()
+                                                        .map(param -> (Expression) visit(param))
+                                                        .collect(Collectors.toList()));
+            }
+
+            @Override
+            public ASTNode visitExplDispatch(CoolParser.ExplDispatchContext ctx) {
+                    return new ExplicitDispatch((Expression) visit(ctx.caller), ctx.realCaller, ctx.name,
+                                ctx.params.stream().map(param -> (Expression) visit(param)).collect(Collectors.toList()));
+            }
+
+            @Override
+            public ASTNode visitIf(CoolParser.IfContext ctx) {
+                return new If((Expression) visit(ctx.cond), (Expression) visit(ctx.thenBranch), (Expression) visit(ctx.elseBranch), ctx.start);
+            }
+
+            @Override
+            public ASTNode visitWhile(CoolParser.WhileContext ctx) {
+                return new While((Expression) visit(ctx.cond), (Expression) visit(ctx.body), ctx.start);
+            }
+
+            @Override
+            public ASTNode visitLet(CoolParser.LetContext ctx) {
+                return new Let(ctx.members.stream().map(member -> (VariableDef) visit(member)).collect(Collectors.toList()),
+                        (Expression) visit(ctx.body), ctx.start);
+            }
+
+            @Override
+            public ASTNode visitVariable_def(CoolParser.Variable_defContext ctx) {
+                return new VariableDef(ctx.name, ctx.type, (Expression) visit(ctx.expr()));
+            }
+
+            @Override
+            public ASTNode visitCase_option(CoolParser.Case_optionContext ctx) {
+                return new CaseOption(ctx.name, ctx.type, (Expression) visit(ctx.body));
+            }
+
+            @Override
+            public ASTNode visitCase(CoolParser.CaseContext ctx) {
+                return new Case((Expression) visit(ctx.var),
+                               ctx.options.stream().map(option -> (CaseOption) visit(option)).collect(Collectors.toList()),
+                               ctx.start);
+            }
         };
 
         var ast = astConstructionVisitor.visit(globalTree);
@@ -213,11 +275,22 @@ public class Compiler {
             int indent = 0;
             @Override
             public Void visit(If iff) {
+                printIndent("if");
+                indent++;
+                iff.cond.accept(this);
+                iff.thenBranch.accept(this);
+                iff.elseBranch.accept(this);
+                indent--;
                 return null;
             }
 
             @Override
             public Void visit(While whilee) {
+                printIndent("while");
+                indent++;
+                whilee.cond.accept(this);
+                whilee.body.accept(this);
+                indent--;
                 return null;
             }
 
@@ -274,6 +347,11 @@ public class Compiler {
 
             @Override
             public Void visit(Assign assign) {
+                printIndent("<-");
+                indent++;
+                printIndent(assign.name.getText());
+                assign.expr.accept(this);
+                indent--;
                 return null;
             }
 
@@ -311,7 +389,9 @@ public class Compiler {
                     param.accept(this);
                 }
                 printIndent(method.retType.getText());
-                method.body.accept(this);
+                for(Expression expr : method.body) {
+                    expr.accept(this);
+                }
                 indent--;
                 return null;
             }
@@ -362,6 +442,100 @@ public class Compiler {
                 printIndent("not");
                 indent++;
                 not.expr.accept(this);
+                indent--;
+                return null;
+            }
+
+            @Override
+            public Void visit(New neww) {
+                printIndent("new");
+                indent++;
+                printIndent(neww.token.getText());
+                indent--;
+                return null;
+            }
+
+            @Override
+            public Void visit(IsVoid isVoid) {
+                printIndent("isvoid");
+                indent++;
+                isVoid.expr.accept(this);
+                indent--;
+                return null;
+            }
+
+            @Override
+            public Void visit(ImplicitDispatch implicitDispatch) {
+                printIndent("implicit dispatch");
+                indent++;
+                printIndent(implicitDispatch.name.getText());
+                for(Expression param : implicitDispatch.params) {
+                    param.accept(this);
+                }
+                indent--;
+                return null;
+            }
+
+            @Override
+            public Void visit(ExplicitDispatch explicitDispatch) {
+                printIndent(".");
+                indent++;
+                explicitDispatch.caller.accept(this);
+                if(explicitDispatch.realCaller != null) {
+                    printIndent(explicitDispatch.realCaller.getText());
+                }
+                printIndent(explicitDispatch.name.getText());
+                for(Expression param : explicitDispatch.params) {
+                    param.accept(this);
+                }
+                indent--;
+                return null;
+            }
+
+            @Override
+            public Void visit(VariableDef variableDef) {
+                printIndent("local");
+                indent++;
+                printIndent(variableDef.name.getText());
+                printIndent(variableDef.type.getText());
+                if(variableDef.expr != null) {
+                    variableDef.expr.accept(this);
+                }
+                indent--;
+                return null;
+            }
+
+            @Override
+            public Void visit(Let let) {
+                printIndent("let");
+                indent++;
+                for(VariableDef variableDef : let.localVars) {
+                    variableDef.accept(this);
+                }
+                let.body.accept(this);
+                indent--;
+                return null;
+            }
+
+            @Override
+            public Void visit(CaseOption caseOption) {
+                printIndent("case branch");
+                indent++;
+                printIndent(caseOption.name.getText());
+                printIndent(caseOption.type.getText());
+                caseOption.body.accept(this);
+                indent--;
+                return null;
+            }
+
+            @Override
+            public Void visit(Case casee) {
+                printIndent("case");
+                indent++;
+                casee.var.accept(this);
+                for(CaseOption caseOption : casee.options) {
+                    caseOption.accept(this);
+                }
                 indent--;
                 return null;
             }

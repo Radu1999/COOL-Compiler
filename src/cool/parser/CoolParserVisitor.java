@@ -1,4 +1,4 @@
-// Generated from E:/CPL/Tema1/src/cool/parser\CoolParser.g4 by ANTLR 4.10.1
+// Generated from E:/CPL/COOL Compiler/src/cool/parser\CoolParser.g4 by ANTLR 4.10.1
 
     package cool.parser;
 
@@ -110,6 +110,13 @@ public interface CoolParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpr_brace(CoolParser.Expr_braceContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code implDispatch}
+	 * labeled alternative in {@link CoolParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitImplDispatch(CoolParser.ImplDispatchContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code method_call}
 	 * labeled alternative in {@link CoolParser#expr}.
 	 * @param ctx the parse tree
@@ -158,6 +165,13 @@ public interface CoolParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMultDiv(CoolParser.MultDivContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code explDispatch}
+	 * labeled alternative in {@link CoolParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExplDispatch(CoolParser.ExplDispatchContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code let}
 	 * labeled alternative in {@link CoolParser#expr}.

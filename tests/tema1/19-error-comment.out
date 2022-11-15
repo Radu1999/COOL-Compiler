@@ -1,2 +1,2 @@
-"19-error-comment.cl", line 2:5, Syntax error: mismatched input '*' expecting {ID, '}'}
+"19-error-comment.cl", line 2:5, Syntax error: mismatched input '*' expecting {'}', ID}
 Compilation halted

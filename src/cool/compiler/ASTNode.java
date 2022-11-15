@@ -117,11 +117,11 @@ class Method extends  ClassContent {
     Token name;
     Token retType;
 
-    Expression body;
+    List<Expression> body;
 
     List<Formal> params;
 
-    Method(Token name, Token retType, Expression body, List<Formal> params) {
+    Method(Token name, Token retType, List<Expression> body, List<Formal> params) {
         super(name);
         this.retType = retType;
         this.body = body;
@@ -278,6 +278,135 @@ class Not extends Expression {
         this.expr = expr;
     }
 
+    public <T> T accept(ASTVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
+}
+
+
+class New extends Expression {
+    New(Token token) {
+        super(token);
+    }
+
+    public <T> T accept(ASTVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
+}
+
+class IsVoid extends Expression {
+    Expression expr;
+    IsVoid(Expression expr, Token token) {
+        super(token);
+        this.expr = expr;
+    }
+
+    public <T> T accept(ASTVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
+}
+
+
+class ImplicitDispatch extends Expression {
+
+    Token name;
+    List<Expression> params;
+    ImplicitDispatch(Token name, List<Expression> params) {
+        super(name);
+        this.name = name;
+        this.params = params;
+    }
+
+    @Override
+    public <T> T accept(ASTVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
+}
+
+class ExplicitDispatch extends Expression {
+
+    Expression caller;
+    Token realCaller;
+    Token name;
+    List<Expression> params;
+    ExplicitDispatch(Expression caller, Token realCaller, Token name, List<Expression> params) {
+        super(name);
+        this.caller = caller;
+        this.realCaller = realCaller;
+        this.name = name;
+        this.params = params;
+    }
+
+    @Override
+    public <T> T accept(ASTVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
+}
+
+class VariableDef extends ASTNode {
+
+    Token type;
+    Token name;
+    Expression expr;
+    VariableDef(Token name, Token type, Expression expr) {
+        super(name);
+        this.name = name;
+        this.type = type;
+        this.expr = expr;
+    }
+
+    @Override
+    public <T> T accept(ASTVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
+}
+
+class Let extends Expression {
+    List<VariableDef> localVars;
+    Expression body;
+
+    Let(List<VariableDef> localVars, Expression body, Token token) {
+        super(token);
+        this.localVars = localVars;
+        this.body = body;
+    }
+
+    @Override
+    public <T> T accept(ASTVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
+}
+
+class CaseOption extends ASTNode {
+    Token name;
+    Token type;
+    Expression body;
+
+    CaseOption(Token name, Token type, Expression body) {
+        super(name);
+        this.name = name;
+        this.type = type;
+        this.body = body;
+    }
+
+    @Override
+    public <T> T accept(ASTVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
+}
+
+class Case extends Expression {
+
+    Expression var;
+    List<CaseOption> options;
+
+    Case(Expression var, List<CaseOption> options, Token token) {
+        super(token);
+        this.var = var;
+        this.options = options;
+    }
+
+    @Override
     public <T> T accept(ASTVisitor<T> visitor) {
         return visitor.visit(this);
     }

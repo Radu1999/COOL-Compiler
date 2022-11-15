@@ -76,6 +76,10 @@ COMMA : ',';
 
 ASSIGN : '<-';
 
+DOT : '.';
+
+AT : '@';
+
 fragment NEW_LINE : '\r'? '\n';
 
 /* Operators */
@@ -89,7 +93,7 @@ DIV : '/';
 
 IN: 'in';
 
-ISVOID: 'isvod';
+ISVOID: 'isvoid';
 
 NOT : 'not';
 
@@ -98,6 +102,8 @@ NEW : 'new';
 RARROW: '=>';
 
 NEG: '~';
+
+LET : 'let';
 
 TYPE : UPPER_LETTER (ID)*;
 ID : (LETTER | '_')(LETTER | '_' | DIGIT)*;

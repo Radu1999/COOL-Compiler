@@ -1,4 +1,4 @@
-// Generated from E:/CPL/Tema1/src/cool/parser\CoolParser.g4 by ANTLR 4.10.1
+// Generated from E:/CPL/COOL Compiler/src/cool/parser\CoolParser.g4 by ANTLR 4.10.1
 
     package cool.parser;
 
@@ -198,6 +198,18 @@ public class CoolParserBaseListener implements CoolParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterImplDispatch(CoolParser.ImplDispatchContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitImplDispatch(CoolParser.ImplDispatchContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterMethod_call(CoolParser.Method_callContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -277,6 +289,18 @@ public class CoolParserBaseListener implements CoolParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMultDiv(CoolParser.MultDivContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExplDispatch(CoolParser.ExplDispatchContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExplDispatch(CoolParser.ExplDispatchContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

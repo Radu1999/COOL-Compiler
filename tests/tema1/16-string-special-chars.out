@@ -1,3 +1,25 @@
-"16-string-special-chars.cl", line 4:20, Lexical error: nterminated string constan
-"16-string-special-chars.cl", line 5:3, Lexical error: nterminated string constan
-Compilation halted
+program
+  class
+    A
+    attribute
+      s1
+      String
+      ab	cd
+    attribute
+      s2
+      String
+      ab
+cd
+    attribute
+      s3
+      String
+      ab
+cd
+    attribute
+      s4
+      String
+      ab\cd
+    attribute
+      s5
+      String
+      abzcd

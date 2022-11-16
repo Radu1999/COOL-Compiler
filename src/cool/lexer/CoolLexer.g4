@@ -54,9 +54,6 @@ BOOL : 'true' | 'false';
 /* Line comment */
 LINE_COMMENT: '--' (.)*? (NEW_LINE | EOF) -> skip;
 
-/* Multiline comment */
-BLOCK_COMMENT: '(*' (.)*? ('*)' {skip();} |  EOF {raiseError("EOF in comment");});
-
 /* Parenthesis */
 LPAREN : '(';
 
@@ -129,15 +126,15 @@ INT : DIGIT+;
 
 
 /* String */
-STRING : '"' ('\\"' | .)*? ('"' | EOF  { raiseError("EOF in string constant"); }
-        | NEW_LINE { raiseError("Unterminated string constant"); })
+STRING : '"' ('\\"' | '\\' NEW_LINE  | .)*? ('"' | EOF  { raiseError(" EOF in string constant "); }
+        | NEW_LINE { raiseError(" Unterminated string constant "); })
     {
         String str = getText();
         str = str.substring(1, str.length() - 1);
-        String[] replaceables = {"\n", "\t", "\b", "\f"};
-        for(String replaceable : replaceables) {
-            str = str.replace("\\" + replaceable, replaceable);
-        }
+        str = str.replace("\\\r\n", "\r\n")
+                .replace("\\\n", "\n")
+                .replace("\\n", "\n")
+                .replace("\\t", "\t");
         str = str.replaceAll("\\\\(?!\\\\)", "");
         if(str.length() > 1024) {
             raiseError("String constant too long");
@@ -147,5 +144,10 @@ STRING : '"' ('\\"' | .)*? ('"' | EOF  { raiseError("EOF in string constant"); }
             setText(str);
         }
     };
+
+INVALID_COMMENT: '*)' { raiseError("Unmatched *)"); };
+
+/* Multiline comment */
+BLOCK_COMMENT: '(*' (BLOCK_COMMENT | .)*? ('*)' {skip();} |  EOF {raiseError("EOF in comment");});
 
 INVALID: . { raiseError("Invalid character: " + getText()); };
